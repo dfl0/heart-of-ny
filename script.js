@@ -25,13 +25,28 @@ var hoveredStyle = {
 
 function onMouseOver(e) {
     e.target.setStyle(hoveredStyle);
+    // e.target.openPopup();
 }
 
 function onMouseOut(e) {
     e.target.setStyle(overlayStyle);
+    // e.target.closePopup();
 }
 
 function onEachFeature(feature, layer) {
+    var name = L.tooltip({
+        content: "<p>" + layer.feature.properties.name + "</p>",
+        className: "label",
+        direction: "center",
+        opacity: 1
+    });
+
+    var label = name.getElement();
+    var width = layer.offsetWidth;
+    var height = layer.offsetHeight;
+
+    layer.bindTooltip(name);
+
     layer.on({
         mouseover: onMouseOver,
         mouseout: onMouseOut

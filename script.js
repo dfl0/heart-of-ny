@@ -7,7 +7,7 @@ var map = L.map('map', {
 });
 
 var overlayStyle = {
-    "color": "#FFFFFF",
+    "color": "#EEC200",
     "weight": 2,
     "opacity": 0.5,
     "fillColor": "#FFFFFF",
@@ -18,7 +18,7 @@ var hoveredStyle = {
     "color": "#FF0000",
     "weight": 2,
     "opacity": 0,
-    "fillColor": "#FF0000",
+    "fillColor": "#EDC600",
     "fillOpacity": 0.5
 };
 
@@ -52,7 +52,6 @@ function onEachFeature(feature, layer) {
         mouseout: onMouseOut
     });
 }
-
 
 function main() {
     // add tile layer to map

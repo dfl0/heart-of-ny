@@ -7,18 +7,18 @@ var map = L.map('map', {
 });
 
 var overlayStyle = {
-    "color": "#EEC200",
+    "color": "#dcae25",
     "weight": 2,
     "opacity": 0.5,
-    "fillColor": "#FFFFFF",
+    "fillColor": "#ffffff",
     "fillOpacity": 0
 };
 
 var hoveredStyle = {
-    "color": "#FF0000",
+    "color": "#ff0000",
     "weight": 2,
     "opacity": 0,
-    "fillColor": "#EDC600",
+    "fillColor": "#dcae25",
     "fillOpacity": 0.5
 };
 

@@ -1,4 +1,4 @@
-var counties = {
+const COUNTIES_GEOJSON = {
     "type": "FeatureCollection",
     "features": [
         {

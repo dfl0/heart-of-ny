@@ -23,10 +23,9 @@ let hoveredStyle = {
 };
 
 
-
 function onEachFeature(feature, layer) {
   let name = L.tooltip({
-    content: "<p>" + layer.feature.properties.name + "</p>",
+    content: "<p>" + feature.properties.name + "</p>",
     className: "label",
     direction: "center",
     opacity: 1
@@ -70,7 +69,16 @@ function onEachFeature(feature, layer) {
   });
 }
 
-function main() {
+async function main() {
+  // fetch the counties stored in Heart of NY database
+  const DB_COUNTIES = await fetch("http://localhost:3000/api/counties")
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch(error => console.error('Error fetching data:', error));
+
+  // filter GeoJSON data to only include counties that are in the database
+  const FILTERED_COUNTIES_GEOJSON = COUNTIES_GEOJSON.features.filter((feature) => DB_COUNTIES.map((county) => county.county_name) .includes(feature.properties.name));
+
   // add tile layer to map
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -78,7 +86,7 @@ function main() {
   }).addTo(map);
 
   // add county overlay layer
-  L.geoJSON(counties, {
+  L.geoJSON(FILTERED_COUNTIES_GEOJSON, {
     style: overlayStyle,
     onEachFeature: onEachFeature
   }).addTo(map);
